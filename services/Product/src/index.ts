@@ -1,11 +1,15 @@
 import express from 'express';
+import bodyParser from 'body-parser';
 
+import config from './config/env';
+import { connect } from './config/db';
+import routes from './routes';
+import { Authenticate } from './middleware';
+
+connect(); //db connect
 const app = express();
-
-app.get('/', (req, res) => {
-    res.send('Well done!');
-})
-
-app.listen(8001, () => {
-    console.log('The application is listening on port 8001!');
-})
+app.use(bodyParser.json());
+app.use('/', Authenticate, routes());
+app.listen(config.port, () => {
+    console.log(`The application is listening on port ${config.port}!`);
+});
