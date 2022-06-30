@@ -8,6 +8,9 @@ const routes = () => {
     router.post('/register', AuthController.register);
     router.post('/login', AuthController.login);
     router.post('/verifyToken', AuthController.verifyToken);
+    router.get('*', function(req, res){
+        res.status(404).send('Path not found');
+      });
     return router;
 };
 
