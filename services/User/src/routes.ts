@@ -5,11 +5,8 @@ import * as UserController from './User/controller';
 const router = Router();
 
 const routes = () => {
-    router.post('/createUser', UserController.createUser);
-    router.get('/getUser', UserController.getUser);
-    router.get('*', function(req, res){
-        res.status(404).send('Path not found');
-      });
+    router.post('/create', UserController.createUser);
+    router.get('/getDetail', UserController.getUser);
     return router;
 };
 
