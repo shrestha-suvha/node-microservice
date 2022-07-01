@@ -9,7 +9,10 @@ import { Authenticate } from './middleware';
 connect(); //db connect
 const app = express();
 app.use(bodyParser.json());
-app.use('/', Authenticate, routes());
+app.use('/product', Authenticate, routes());
+app.all('*', function (req, res) {
+    res.status(404).send('Path not found');
+});
 app.listen(config.port, () => {
     console.log(`The application is listening on port ${config.port}!`);
 });
