@@ -18,7 +18,7 @@ export const Authenticate = async (req: ICustomAuthRequest, res: Response, next:
     }
     try {
         const { data } = await axios({
-            url: 'verifyToken',
+            url: 'auth/verifyToken',
             baseURL: config.authBaseUrl,
             method: 'post',
             data: { token },
